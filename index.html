@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Contacts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .instructions {
+            margin-top: 30px;
+            text-align: left;
+            display: inline-block;
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                document.getElementById('android-instructions').style.display = 'block';
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                document.getElementById('ios-instructions').style.display = 'block';
+            } else {
+                document.getElementById('default-instructions').style.display = 'block';
+            }
+        }
+        window.onload = detectDevice;
+    </script>
+</head>
+<body>
+    <h1>Add My Contact to Your Address Book</h1>
+    <p>Click the link below to download my contact information.</p>
+    <a href="contact.vcf" download="contact.vcf">Download Contact vCard</a>
+
+    <div id="ios-instructions" class="instructions" style="display:none;">
+        <h2>iOS Instructions:</h2>
+        <ol>
+            <li>Tap the "Download Contact vCard" link above.</li>
+            <li>Tap "Download" in the prompt.</li>
+            <li>Open the downloaded file in the Files app.</li>
+            <li>Tap the vCard file, then tap "Add to Contacts".</li>
+        </ol>
+    </div>
+
+    <div id="android-instructions" class="instructions" style="display:none;">
+        <h2>Android Instructions:</h2>
+        <ol>
+            <li>Tap the "Download Contact vCard" link above.</li>
+            <li>The file should download automatically.</li>
+            <li>Open the downloaded file (usually in the "Downloads" folder).</li>
+            <li>Select the Contacts app to import the contact.</li>
+        </ol>
+    </div>
+
+    <div id="default-instructions" class="instructions" style="display:none;">
+        <h2>General Instructions:</h2>
+        <ol>
+            <li>Tap the "Download Contact vCard" link above.</li>
+            <li>Locate the downloaded vCard file on your device.</li>
+            <li>Open the file to add the contact information to your address book.</li>
+        </ol>
+    </div>
+</body>
+</html>
